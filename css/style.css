@@ -1,0 +1,82 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+    background-color: #222831;
+    font-family: sans-serif;
+}
+span{
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+.t-gerenciar, .t-tarefas{
+    font-size: 45px;
+}
+.t-gerenciar{
+    color: #31363F;
+    border-bottom: 2px solid ;
+}
+.t-tarefas{
+    color: #76ABAE;
+    border-bottom: 2px solid ;
+}
+.container{
+    width: 800px;
+    border-radius: 5px;
+    box-shadow: 4px 4px 5px rgba(82, 82, 82, .4);
+    text-align: center;
+    background-color: #EEEEEE;
+}
+.o-header{
+    border-radius:  5px 5px 0 0;
+    padding: 40px;
+}
+.to-do-input{
+    width: 80%;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+}
+.p-info{
+    margin-top: 20px;
+    color: #76ABAE;
+}
+.to-bnt{
+    padding: 10px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.to-bnt:hover{
+    color: #76ABAE;
+
+}
+i{
+    font-size: 20px;
+}
+.tarefas{
+    padding: 20px 0;
+}
+/* Parte ul/li */
+ul {
+    list-style: none;
+    padding: 0 75px;
+}
+li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 4px 1px 10px rgba(82, 82, 82, .4);
+    background-color: #EEEEEE;
+    padding: 10px;
+}
+

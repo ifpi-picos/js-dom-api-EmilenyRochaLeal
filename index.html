@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GerenciarTarefas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="container">
+            <div class="o-header">
+                <span class="t-gerenciar">Gerenciar</span><span class="t-tarefas">Tarefas</span>
+                <p class="p-info">Adicionar Tarefa</p>
+                <input type="text" class="to-do-input" placeholder="Descrição da Atividade"/>
+                <button type="button" id="btn-add" class="to-bnt">
+                    <i class="bi bi-plus-circle"></i>
+                </button>
+            </div>
+            <div class="tarefas">
+                <span>
+                    Tarefas
+                    <button type="button" id="to-view" class="to-bnt"><i class="bi bi-caret-down"></i></button> 
+                </span>
+                <!-- <p class="p-info">Não há tarefas na lista</p> -->
+                <ul id="list-container">
+                    
+
+                </ul>
+            </div>
+            <!-- <div class="edit">
+                <span>Editar</span>
+                <div class="to-edit">
+                    <p class="to-tarefas"></p>
+                    <input type="text" class="to-do-input" id="to-input" placeholder="Edite a tarefa">
+                </div>
+            </div> -->
+        </div>
+</body>
+</html>

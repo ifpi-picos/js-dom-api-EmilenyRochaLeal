@@ -1,9 +1,3 @@
-let CLIENT_ID = '984273367137-6eatehe2iviibs47cfg9tsuhhdc1q15q.apps.googleusercontent.com';
-let API_KEY = 'AIzaSyCBT71VD-jg4AD2DN8R2feUvtWN4rJE68w';
-let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-let SCOPES = "https://www.googleapis.com/auth/calendar";
-
-const tbody = document.querySelector("tbody");
 let inputdesc = document.querySelector(".to-do-input")
 let bntAdd = document.getElementById("btn-add");
 let bntView = document.getElementById("to-view");
@@ -17,42 +11,52 @@ function verificar(){
     }
 }
 function adicionar(){
-    tarefas.push({desc: inputdesc.value});
+    tarefas.push({desc: inputdesc.value, concluida: false});
     localStorage.setItem("tarefas", JSON.stringify(tarefas))
 }
 
-function deletar(){
+function deletar(index){
     tarefas.splice(index, 1);
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
+    visualizar()
+}
+function concluir(index){
+    tarefas[index].concluida = !tarefas[index].concluida; // Alterna o estado da tarefa
+
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+    visualizar();
 }
 
-function editar(index){
-    const novaTarefa = prompt("Edite", tarefas[index].text);
-    if (novaTarefa !== null){
-        tarefas[index].text == novaTarefa;
-        localStorage.setItem("tarefas", JSON.stringify(tarefas));
+function visualizar() {
+    let tarefasSalvas = JSON.parse(localStorage.getItem('tarefas'));
+    
+    if (tarefasSalvas) { 
+        ulLista.innerHTML = ``;
+        tarefasSalvas.forEach((tarefa, index) => {
+            let li = document.createElement("li");
+            let icone = tarefa.concluida ? 'bi bi-check-circle' : 'bi bi-circle';
+            li.innerHTML = `<button class="to-bnt" onclick="concluir(${index})"><i class="${icone}"></i></button>
+                            <span class="li-span ${tarefa.concluida ? 'concluida' : ''}"> ${tarefa.desc} </span> 
+                            <hr>
+                            <button class="to-bnt" onclick="deletar(${index})"><i class="bi bi-trash3"></i></button>`;
+            ulLista.appendChild(li);
+        });
+    } else {
+
+        ulLista.innerHTML = `<span>Não há tarefas salvas. </span>`;
     }
 }
 
-function visualizar(){
-    ulLista.innerHTML = '';
-    let tarefasSalvas = JSON.parse(localStorage.getItem('tarefas'));
-    tarefasSalvas.forEach((tarefa, index)=>{
-        let li = document.createElement("li");
-        li.textContent = tarefa.desc;
-        ulLista.appendChild(li);
-    })
-}
 bntView.addEventListener('click', ()=>{
     if (iconElement.classList.contains('bi-caret-down')) {
         iconElement.classList.remove('bi-caret-down');
         iconElement.classList.add('bi-caret-up');
-        visualizar(); // Chama a função para exibir as tarefas
-        ulLista.style.display = 'block'; // Mostra a lista
+        visualizar(); 
+        ulLista.style.display = 'block'; 
     } else {
         iconElement.classList.remove('bi-caret-up');
         iconElement.classList.add('bi-caret-down');
-        ulLista.style.display = 'none'; // Oculta a lista
+        ulLista.style.display = 'none'; 
     }
 
 });
@@ -60,9 +64,8 @@ bntView.addEventListener('click', ()=>{
 bntAdd.addEventListener('click', ()=>{
     verificar();
     adicionar();
-    inputdesc.value = '';
     visualizar();
+    inputdesc.value = '';
 });
-// bntDelete.addEventListener('click', deletar);
-// bntEdite.addEventListener('click', editar);
+
 
